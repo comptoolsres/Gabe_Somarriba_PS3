@@ -1,0 +1,270 @@
+# setting up a reference for finding the highest waterlevel value
+highest = -1.0
+# open and read csv into a variable
+myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+# skip the header row
+next(myfile)
+# parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+for number,line in enumerate(myfile):
+    # remove excess spaces at the beginning and end of each line
+    line.strip()
+    # split the line using delimiter ',' and get only the "Water Level" column
+    waterlevel = line.split(',')[1]
+    # cut out the "date" column and assign it to variable 'date'
+    date = line.split(' ')[0]
+    # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+    timeprecursor = line.split(' ')[1]
+    # take the "Time" column out of the precursor and assign it to variable 'time'
+    time = timeprecursor.split(',')[0]
+    # remove excess spaces at the beginning and end of each waterlevel value
+    waterlevel.strip()
+    # determine whether waterlevel value is a non-empty field
+    if len(waterlevel) >= 1:
+        # turn the waterlevel values into floating point numbers in order to find the largest number
+        waterlevel = float(line.split(',')[1])
+        # determine whether this iteration contains a higher waterlevel value than the previous highest value
+        if waterlevel >= highest:
+            # take the highest waterlevel value and assign it to 'highest'
+            highest = waterlevel
+            # continue to next iteration
+            continue
+        # skip over waterlevel values lower than the current highest
+        else:
+            continue
+    # ignore empty values for waterlevel
+    else:
+        continue
+# achieve the desired output
+print(f"The highest water level, {highest} ft, was observed at {time} on {date}")
+______________________________________________________________________________
+
+def highestwaterlevel():
+    # setting up a reference for finding the highest waterlevel value
+    highest = -1.0
+    # open and read csv into a variable
+    myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+    # skip the header row
+    next(myfile)
+    # parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+    for number,line in enumerate(myfile):
+        # remove excess spaces at the beginning and end of each line
+        line.strip()
+        # split the line using delimiter ',' and get only the "Water Level" column
+        waterlevel = line.split(',')[1]
+        # cut out the "date" column and assign it to variable 'date'
+        date = line.split(' ')[0]
+        # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+        timeprecursor = line.split(' ')[1]
+        # take the "Time" column out of the precursor and assign it to variable 'time'
+        time = timeprecursor.split(',')[0]
+        # remove excess spaces at the beginning and end of each waterlevel value
+        waterlevel.strip()
+        # determine whether waterlevel value is a non-empty field
+        if len(waterlevel) >= 1:
+            # turn the waterlevel values into floating point numbers in order to find the largest number
+            waterlevel = float(line.split(',')[1])
+            # determine whether this iteration contains a higher waterlevel value than the previous highest value
+            if waterlevel >= highest:
+                # take the highest waterlevel value and assign it to 'highest'
+                highest = waterlevel
+                # preserve the 'time' and 'date' from the iteration containing the highest waterlevel
+                highesttime = time
+                highestdate = date
+                # continue to next iteration
+                continue
+            # skip over waterlevel values lower than the current highest
+            else:
+                continue
+        # ignore empty values for waterlevel
+        else:
+            continue
+    # achieve the desired output
+    print(f"The highest water level, {highest} ft, was observed at {highesttime} on {highestdate}")
+  
+def lowestwaterlevel():
+    # setting up a reference for finding the lowest waterlevel value
+    lowest = 10.0
+    # open and read csv into a variable
+    myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+    # skip the header row
+    next(myfile)
+    # parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+    for number,line in enumerate(myfile):
+        # remove excess spaces at the beginning and end of each line
+        line.strip()
+        # split the line using delimiter ',' and get only the "Water Level" column
+        waterlevel = line.split(',')[1]
+        # cut out the "date" column and assign it to variable 'date'
+        date = line.split(' ')[0]
+        # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+        timeprecursor = line.split(' ')[1]
+        # take the "Time" column out of the precursor and assign it to variable 'time'
+        time = timeprecursor.split(',')[0]
+        # remove excess spaces at the beginning and end of each waterlevel value
+        waterlevel.strip()
+        # determine whether waterlevel value is a non-empty field
+        if len(waterlevel) >= 1:
+            # turn the waterlevel values into floating point numbers in order to find the Smallest number
+            waterlevel = float(line.split(',')[1])
+            # determine whether this iteration contains a lower waterlevel value than the previous lowest value
+            if waterlevel <= lowest:
+                # take the lowest waterlevel value and assign it to 'lowest'
+                lowest = waterlevel
+                # preserve the 'time' and 'date' from the iteration containing the lowest waterlevel
+                lowesttime = time
+                lowestdate = date
+                # continue to next iteration
+                continue
+            # skip over waterlevel values higher than the current lowest
+            else:
+                continue
+        # ignore empty values for waterlevel
+        else:
+            continue
+    # achieve the desired output
+    print(f"The lowest water level, {lowest} ft, was observed at {lowesttime} on {lowestdate}")
+    
+def averagewaterlevel():
+    # setting up starting points to which each iteration will add values
+    counter = 0.0
+    total = 0.0
+    # open and read csv into a variable
+    myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+    # skip the header row
+    next(myfile)
+    # parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+    for number,line in enumerate(myfile):
+        # remove excess spaces at the beginning and end of each line
+        line.strip()
+        # split the line using delimiter ',' and get only the "Water Level" column
+        waterlevel = line.split(',')[1]
+        # cut out the "date" column and assign it to variable 'date'
+        date = line.split(' ')[0]
+        # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+        timeprecursor = line.split(' ')[1]
+        # take the "Time" column out of the precursor and assign it to variable 'time'
+        time = timeprecursor.split(',')[0]
+        # remove excess spaces at the beginning and end of each waterlevel value
+        waterlevel.strip()
+        # determine whether waterlevel value is a non-empty field
+        if len(waterlevel) >= 1:
+            # turn the waterlevel values into floating point numbers in order to find the Average
+            waterlevel = float(line.split(',')[1])
+            # as the loop runs, each waterlvel value is added to the total sum and the counter increases
+            total = (total + waterlevel)
+            counter = (counter + 1)
+            continue
+        # ignore empty values for waterlevel
+        else:
+            continue
+    # the average is taken by diving the sum total of waterlevel values and dividing them by the number of waterlevel values used
+    # the output is rounded to 3 decimal places and assigned to 'average'
+    average = round((total/counter),3)
+    # achieve the desired output
+    print(f"The average water level was {average} ft")
+#now put it all together    
+highestwaterlevel()
+lowestwaterlevel()
+averagewaterlevel()
+
+_____________________________________________________________________________
+
+# setting up a reference for finding the highest waterlevel value
+previouswaterlevel = 2.421
+previousdifference = 0
+# open and read csv into a variable
+myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+# skip the header row
+next(myfile)
+# parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+for number,line in enumerate(myfile):
+    # remove excess spaces at the beginning and end of each line
+    line.strip()
+    # split the line using delimiter ',' and get only the "Water Level" column
+    waterlevel = line.split(',')[1]
+    # cut out the "date" column and assign it to variable 'date'
+    date = line.split(' ')[0]
+    # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+    timeprecursor = line.split(' ')[1]
+    # take the "Time" column out of the precursor and assign it to variable 'time'
+    time = timeprecursor.split(',')[0]
+    # remove excess spaces at the beginning and end of each waterlevel value
+    waterlevel.strip()
+    # determine whether waterlevel value is a non-empty field
+    if len(waterlevel) >= 1:
+        # turn the waterlevel values into floating point numbers in order to calculate differences
+        waterlevel = float(line.split(',')[1])
+        # assigning the variable 'difference' to the difference between the current iteration's water level value and the previous iteration's water level value
+        difference = waterlevel - previouswaterlevel
+        # updating the previouswaterlevel variable in preparation for the next iteration
+        previouswaterlevel = waterlevel
+        # checking whether the current iteration's difference is greater than the previously-recorded greatest difference
+        if difference >= previousdifference:
+            # replacing value for all-time greatest difference
+            previousdifference = difference
+            # preserving date, time, and waterlevel at iteration containing the new all time greatest difference
+            timeofdifference = time
+            dateofdifference = date
+            waterlevelafterdifference = waterlevel
+            continue
+        # ignoring iterations with smaller differences than the all time greatest difference
+        else:
+            continue
+    # ignore empty values for waterlevel
+    else:
+        continue
+# achieve the desired output
+print(f'The largest positive shift in water level was {previousdifference}, observed on {dateofdifference} at {timeofdifference}')
+
+_____________________________________________________________________________
+
+# setting up a reference from which to begin recording previous waterlevel
+previouswaterlevel = 2.421
+# open and read csv into a variable
+myfile = open('/blue/bsc4452/share/Class_Files/data/CO-OPS__8729108__wl.csv')
+# skip the header row
+next(myfile)
+# parse each line of the csv into for loop as variable 'line', with each line enumerated by 'number'
+for number,line in enumerate(myfile):
+    # remove excess spaces at the beginning and end of each line
+    line.strip()
+    # split the line using delimiter ',' and get only the "Water Level" column
+    waterlevel = line.split(',')[1]
+    # cut out the "date" column and assign it to variable 'date'
+    date = line.split(' ')[0]
+    # set up a precursor to circumvent the combination of a space and comma at the beginning and end of the "Time" column
+    timeprecursor = line.split(' ')[1]
+    # take the "Time" column out of the precursor and assign it to variable 'time'
+    time = timeprecursor.split(',')[0]
+    # remove excess spaces at the beginning and end of each waterlevel value
+    waterlevel.strip()
+    # provide context for recording and messages
+    print(date, time)
+    # determine whether waterlevel value is a non-empty field
+    if len(waterlevel) >= 1:
+        # turn the waterlevel values into floating point numbers in order to calculate differences
+        waterlevel = float(line.split(',')[1])
+        # determine whether current iteration's water level is above 5.0
+        if waterlevel >= 5.0:
+            # installing warning message
+            print('WARNING: Water level height past threshhold.')
+        # providing null feedback to user    
+        else:
+            print('Water level nominal.')
+            continue
+        # assigning the variable 'difference' to the difference between the current iteration's water level value and the previous iteration's water level value
+        difference = waterlevel - previouswaterlevel
+        # updating the previouswaterlevel variable in preparation for the next iteration
+        previouswaterlevel = waterlevel
+        # determine whether rate of water level rise is past threshhold of 0.25
+        if difference >= 0.25:
+            # installing warning message
+            print('WARNING: Water level rising faster than accepted threshhold.')
+        else:
+            continue
+    # determine whether measurement is missing
+    else:
+        # installing warning message
+        print('WARNING: No reading received at time point.')
+        continue
+# run to achieve the desired output
